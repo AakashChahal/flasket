@@ -20,6 +20,14 @@
         {{ form.password2.label() }} {{ form.password2(class='form-control',
         placeholder='Confirm Password') }}
         <!--  -->
+        <div class="checkbox mt-3">
+            <h6>Already have an account?</h6>
+            <a
+                class="btn btn-sm btn-secondary"
+                href="{{ url_for('login_page') }}"
+                >Login</a
+            >
+        </div>
         {{ form.submit(class='btn btn-lg btn-primary mt-2') }}
     </form>
 </div>
