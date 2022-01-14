@@ -18,13 +18,18 @@ def products_page():
         purchased_item = request.form.get('purchased_item')
         purchased_object = Item.query.filter_by(name=purchased_item).first()
         if purchased_object:
+            if purchased_object.price > current_user.budget:
+                flash("You don't have enough budget", category="warning")
             purchased_object.owner = current_user.id
             current_user.budget -= purchased_object.price
             db.session.commit()
+            flash(f'You bought {purchased_object.name} for {purchased_item.price}£')
 
-    items = Item.query.filter_by(owner=None)
+        return redirect(url_for('products_page'))
 
-    return render_template('products.html', items=items, purchase_form=purchase_form)
+    if request.method == "GET":
+        items = Item.query.filter_by(owner=None)
+        return render_template('products.html', items=items, purchase_form=purchase_form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
