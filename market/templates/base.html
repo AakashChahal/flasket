@@ -12,6 +12,11 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
+        <!-- fontawesome icons -->
+        <script
+            src="https://kit.fontawesome.com/554daee33d.js"
+            crossorigin="anonymous"
+        ></script>
 
         <title>{% block title %} {% endblock %}</title>
     </head>
@@ -53,7 +58,7 @@
                     {% if current_user.is_authenticated %}
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="" style="color: red">
+                            <a class="nav-link text-warning" href="">
                                 <i class="fas fa-coins"></i>
                                 {{ current_user.budget }}
                             </a>

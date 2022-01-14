@@ -15,12 +15,12 @@
         placeholder='Password') }}
         <!--  -->
         <div class="checkbox mt-3">
-            <h6>Do not have an account?</h6>
-            <a
-                class="btn btn-sm btn-secondary"
-                href="{{ url_for('register_page') }}"
-                >Register</a
-            >
+            <h6>
+                Do not have an account?
+                <a class="link-info" href="{{ url_for('register_page') }}"
+                    >Register here.</a
+                >
+            </h6>
         </div>
         <div class="d-grid gap-2">
             {{ form.submit(class='btn btn-lg btn-primary mt-4') }}

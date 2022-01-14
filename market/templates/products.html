@@ -5,39 +5,58 @@
 
 <!-- main content of the page -->
 {% block content %}
-<h1 class="text-center fst-italic font-monospace mt-4">Products Page</h1>
+<h1 class="text-center fst-italic font-monospace mt-4 mb-4">Products Page</h1>
 <div class="container-fluid">
-    <table class="table table-hover table-dark table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Barcode</th>
-                <th scope="col">Price</th>
-                <th scope="col">Option</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr class="align-middle">
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.barcode }}</td>
-                <td>£{{ item.price }}</td>
-                <td>
-                    <button class="btn btn-round btn-info btn-sm" type="button">
-                        Details
-                    </button>
-                    <button
-                        class="btn btn-round btn-primary btn-sm"
-                        type="button"
-                    >
-                        Purchase
-                    </button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="text-center">Availaible Items</h3>
+            <table class="table table-hover table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Barcode</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+
+                    <!-- including the product modal html file -->
+                    {% include 'includes/product_modal.html' %}
+
+                    <tr class="align-middle">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.barcode }}</td>
+                        <td>£{{ item.price }}</td>
+                        <td>
+                            <button
+                                class="btn btn-round btn-info btn-sm"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#product-{{ item.id }}-info"
+                            >
+                                Details
+                            </button>
+                            <button
+                                class="btn btn-round btn-primary btn-sm"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#product-{{ item.id }}-purchase"
+                            >
+                                Purchase
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <h3 class="text-center">Owned Items</h3>
+        </div>
+    </div>
 </div>
 {% endblock %}
