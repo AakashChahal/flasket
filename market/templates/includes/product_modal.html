@@ -1,0 +1,83 @@
+<!-- product info Modal -->
+<div
+    class="modal fade dark"
+    id="product-{{ item.id }}-info"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content bg-info text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    {{ item.name }}
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">{{ item.description }}</div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- product purchase Modal -->
+<div
+    class="modal fade dark"
+    id="product-{{ item.id }}-purchase"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content bg-info text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Purchase Confirmation
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                Do you want to purchase {{ item.name }}?
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    No
+                </button>
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <form method="POST">
+                        {{ purchase_form.hidden_tag() }}
+                        <input
+                            id="purchased_item"
+                            name="purchased_item"
+                            type="hidden"
+                            value="{{ item.name }}"
+                        />
+                        {{ purchase_form.submit(class="btn btn-success") }}
+                    </form>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
