@@ -81,3 +81,50 @@
         </div>
     </div>
 </div>
+
+<!-- product sell Modal -->
+<div
+    class="modal fade dark"
+    id="product-{{ item.id }}-sell"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content bg-info text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Sell Confirmation
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">Do you want to sell {{ item.name }}?</div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    No
+                </button>
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <form method="POST">
+                        {{ selling_form.hidden_tag() }}
+                        <input
+                            id="selling_item"
+                            name="selling_item"
+                            type="hidden"
+                            value="{{ item.name }}"
+                        />
+                        {{ selling_form.submit(class="btn btn-secondary") }}
+                    </form>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

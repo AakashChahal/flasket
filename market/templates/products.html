@@ -21,11 +21,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in items %}
-
+                    {% for item in items %} {% if item %}
                     <!-- including the product modal html file -->
                     {% include 'includes/product_modal.html' %}
-
                     <tr class="align-middle">
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
@@ -50,12 +48,42 @@
                             </button>
                         </td>
                     </tr>
-                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">No products availaible</td>
+                    </tr>
+                    {% endif %} {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="col-4">
             <h3 class="text-center">Owned Items</h3>
+            <div class="row">
+                {% for item in owned_items %}
+                <!--  -->
+                {% include 'includes/product_modal.html' %}
+                <div
+                    style="max-width: 12rem"
+                    class="mx-auto card text-center text-white mb-3 bg-secondary"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <button
+                            type="button"
+                            class="btn btn-outline-danger"
+                            style="margin-bottom: 5px"
+                            data-toggle="modal"
+                            data-target="#product-{{ item.id }}-sell"
+                        >
+                            Sell this Item
+                        </button>
+                        <p class="card-text">
+                            <strong>Cost: {{ item.price }}£</strong>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
